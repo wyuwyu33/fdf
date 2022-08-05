@@ -6,7 +6,7 @@
 /*   By: wyu <wyu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 22:34:42 by wyu               #+#    #+#             */
-/*   Updated: 2022/01/03 15:25:26 by wyu              ###   ########.fr       */
+/*   Updated: 2022/07/29 01:41:02 by wyu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_strdup(const char *s1)
 	char	*s2;
 	size_t	s1_len;
 
+	if (!s1)
+		return (NULL);
 	s1_len = ft_strlen(s1);
 	s2 = ft_calloc(s1_len + 1, 1);
 	if (!s2)

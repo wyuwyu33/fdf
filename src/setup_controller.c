@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   setup_controller.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wyu <wyu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/02 14:34:01 by wyu               #+#    #+#             */
-/*   Updated: 2022/07/29 23:35:26 by wyu              ###   ########.fr       */
+/*   Created: 2022/08/05 02:32:28 by wyu               #+#    #+#             */
+/*   Updated: 2022/08/05 02:44:24 by wyu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../inc/fdf.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+static
+int	hook_key(int key, t_mlx *mlx)
 {
-	t_list	*next;
-
-	if (!lst || !del)
-		return ;
-	while ((*lst))
+	if (key == 53)
 	{
-		next = (*lst)->next;
-		ft_lstdelone(*lst, del);
-		*lst = next;
+		mlx_destroy_image(mlx->mlx_ptr, mlx->img->img_ptr);
+		mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
+		exit(0);
 	}
+	return (0);
+}
+
+void	setup_controller(t_mlx *mlx)
+{
+	mlx_key_hook(mlx->win_ptr, hook_key, mlx);
 }

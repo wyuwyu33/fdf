@@ -6,7 +6,7 @@
 #    By: wyu <wyu@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/23 03:03:56 by wyu               #+#    #+#              #
-#    Updated: 2022/07/26 21:52:34 by wyu              ###   ########.fr        #
+#    Updated: 2022/08/05 15:04:15 by wyu              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ LIBRARIES	= -L$(LIBFT_DIR) -L$(MIX_DIR) -lmlx -lft -lm -framework OpenGL -framew
 INCLUDES	= -I$(FDF_HEADERS) -I$(LIBFT_HEADERS) -I$(MIX_HEADERS)
 
 LIBFT			= $(LIBFT_DIR)libft.a
-LIBFT_DIR		= ./libft
+LIBFT_DIR		= ./libft/
 LIBFT_HEADERS	= $(LIBFT_DIR)
 
 MIX			= $(MIX_DIR)libmlx.a
@@ -32,13 +32,26 @@ HEADER_LIST		=
 
 SRCS			= $(addprefix $(SRC_DIR), $(SRC_LIST))
 SRC_DIR			= ./src/
-SRC_LIST		= main.c
-SRCS			= $(addprefix $(SRC_DIR), $(SRC_LIST))
+SRC_LIST		= main.c\
+					terminate.c\
+					read_fdf.c\
+					parseline.c\
+					width.c\
+					get_map.c\
+					convert_into_number.c\
+					atoi_base.c\
+					get_mlx.c\
+					render.c\
+					rotate.c\
+					bresenham.c\
+					iso.c\
+					place.c\
+					setup_controller.c
+
 
 OBJS			= $(addprefix $(OBJ_DIR), $(OBJ_LIST))
 OBJ_DIR			= ./obj/
 OBJ_LIST		= $(patsubst %.c, %.o, $(SRC_LIST))
-OBJS			= $(addprefix $(OBJ_DIR), $(OBJ_LIST))
 
 all: $(NAME)
 
@@ -52,7 +65,7 @@ $(MIX):
 	make -sC $(MIX_DIR)
 
 $(OBJS): $(SRCS)
-	$(CC) $(FLAGS) -c $(INCLUDES) $<
+	$(CC) $(FLAGS) -c $(INCLUDES) $^
 	mv $(OBJ_LIST) $(OBJ_DIR)
 
 clean:

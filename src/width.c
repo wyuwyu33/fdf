@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   width.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wyu <wyu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/02 14:34:01 by wyu               #+#    #+#             */
-/*   Updated: 2022/07/29 23:35:26 by wyu              ###   ########.fr       */
+/*   Created: 2022/08/04 04:34:12 by wyu               #+#    #+#             */
+/*   Updated: 2022/08/04 04:35:32 by wyu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../inc/fdf.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+int	widthcmp(int c_width, char **parse_line)
 {
-	t_list	*next;
+	int	i_width;
 
-	if (!lst || !del)
-		return ;
-	while ((*lst))
-	{
-		next = (*lst)->next;
-		ft_lstdelone(*lst, del);
-		*lst = next;
-	}
+	i_width = 0;
+	while (parse_line[i_width])
+		i_width++;
+	if (c_width != i_width)
+		return (1);
+	return (0);
+}
+
+int	init_width(char **parse_line)
+{
+	int	i_width;
+
+	i_width = 0;
+	while (parse_line[i_width])
+		i_width++;
+	return (i_width);
 }

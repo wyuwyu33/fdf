@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   terminate.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wyu <wyu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/02 14:34:01 by wyu               #+#    #+#             */
-/*   Updated: 2022/07/29 23:35:26 by wyu              ###   ########.fr       */
+/*   Created: 2022/08/04 03:52:18 by wyu               #+#    #+#             */
+/*   Updated: 2022/08/04 15:39:14 by wyu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../inc/fdf.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+void	terminate(char *str)
 {
-	t_list	*next;
-
-	if (!lst || !del)
-		return ;
-	while ((*lst))
-	{
-		next = (*lst)->next;
-		ft_lstdelone(*lst, del);
-		*lst = next;
-	}
+	if (errno)
+		perror(str);
+	else
+		ft_putendl_fd(str, 2);
+	exit(1);
 }

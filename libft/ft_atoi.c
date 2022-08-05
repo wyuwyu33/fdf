@@ -6,7 +6,7 @@
 /*   By: wyu <wyu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 03:57:59 by wyu               #+#    #+#             */
-/*   Updated: 2022/01/02 15:57:21 by wyu              ###   ########.fr       */
+/*   Updated: 2022/07/29 03:35:35 by wyu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ int	ft_atoi(const char *str)
 	{
 		nbr = (nbr * 10) + (str[i] - '0');
 		if (sign * nbr > INT_MAX)
-			return (-1);
+			return (INT_MAX);
 		if (sign * nbr < INT_MIN)
-			return (0);
+			return (INT_MIN);
 		i++;
 	}
 	return ((int)(sign * nbr));
